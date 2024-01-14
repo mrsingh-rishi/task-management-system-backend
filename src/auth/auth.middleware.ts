@@ -25,9 +25,7 @@ export class AuthMiddleware implements NestMiddleware {
 
       // Attach the decoded token to the request for later use in controllers
       req['user'] = decodedToken;
-
-      console.log('Decoded Token:', decodedToken);
-
+      // console.log('Decoded Token:', decodedToken);
       next();
     } catch (error) {
       throw new UnauthorizedException('Unauthorized: Invalid token');

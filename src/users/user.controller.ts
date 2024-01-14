@@ -36,6 +36,8 @@ export class UserController {
       userId: user._id,
       username: user.name,
       email: user.email,
+      tasks: user.tasks,
+      completedTasks: user.completedTasks,
     };
   }
 
@@ -65,6 +67,8 @@ export class UserController {
       userId: updatedUser._id,
       username: updatedUser.name,
       email: updatedUser.email,
+      tasks: updatedUser.tasks,
+      completedTasks: updatedUser.completedTasks,
     };
   }
 }
