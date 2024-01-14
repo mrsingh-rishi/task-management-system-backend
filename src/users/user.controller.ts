@@ -34,7 +34,7 @@ export class UserController {
     // Return user data (you might want to omit sensitive data like the password)
     return {
       userId: user._id,
-      username: user.name,
+      name: user.name,
       email: user.email,
       tasks: user.tasks,
       completedTasks: user.completedTasks,
@@ -65,7 +65,7 @@ export class UserController {
     // Return updated user data (you might want to omit sensitive data like the password)
     return {
       userId: updatedUser._id,
-      username: updatedUser.name,
+      name: updatedUser.name,
       email: updatedUser.email,
       tasks: updatedUser.tasks,
       completedTasks: updatedUser.completedTasks,
