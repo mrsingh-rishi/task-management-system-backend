@@ -10,7 +10,10 @@ export class UserService {
 
   async getUserById(userId: string): Promise<UserDocument | null> {
     // Retrieve user data by user ID
-    return this.userModel.findById(userId).exec();
+    return await this.userModel
+      .findById(userId)
+      .populate('tasks')
+      .populate('completedTasks');
   }
 
   async updateUser(
@@ -20,7 +23,8 @@ export class UserService {
     // Update user data by user ID
     const updatedUser = await this.userModel
       .findByIdAndUpdate(userId, updateUserData, { new: true })
-      .exec();
+      .populate('tasks')
+      .populate('completedTasks');
 
     if (!updatedUser) {
       throw new BadRequestException('User not found');

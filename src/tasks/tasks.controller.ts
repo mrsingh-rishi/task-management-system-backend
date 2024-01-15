@@ -28,7 +28,7 @@ export class TasksController {
   @Get()
   async getAllTasks() {
     const allTasks = await this.tasksService.getAllTasks();
-    return allTasks;
+    return {allTasks};
   }
 
   // Update a task by ID

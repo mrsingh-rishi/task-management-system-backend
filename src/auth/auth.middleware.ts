@@ -1,4 +1,3 @@
-// auth.middleware.ts
 import {
   Injectable,
   NestMiddleware,
@@ -13,7 +12,9 @@ export class AuthMiddleware implements NestMiddleware {
     const token = req.headers['authorization'];
 
     if (!token) {
-      throw new UnauthorizedException('Unauthorized: Token not provided');
+      console.log('Token not found');
+      res.status(401).send();
+      return;
     }
 
     // Extract the token from the "Bearer" format
@@ -21,14 +22,14 @@ export class AuthMiddleware implements NestMiddleware {
 
     try {
       // Verify and decode the token
-      const decodedToken = jwt.verify(tokenValue, 'shhhhh_RISHI_SINGH'); // Replace 'shhhhh_RISHI_SINGH' with your actual secret key
+      const decodedToken = jwt.verify(tokenValue, 'shhhhh_RISHI_SINGH');
 
       // Attach the decoded token to the request for later use in controllers
       req['user'] = decodedToken;
-      // console.log('Decoded Token:', decodedToken);
       next();
     } catch (error) {
-      throw new UnauthorizedException('Unauthorized: Invalid token');
+      // console.error('Token verification failed:', error.message);
+      res.status(401).send();
     }
   }
 }
